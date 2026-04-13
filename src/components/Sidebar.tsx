@@ -24,8 +24,9 @@ export default function Sidebar({
           <li
             key={project.id}
             className={`list-none ${selectedProjectId === project.id ? "bg-blue-500 text-white" : ""}`}
+            onClick={() => onSelectProject(project.id)}
           >
-            <a onClick={() => onSelectProject(project.id)}>{project.title}</a>
+            <a>{project.title}</a>
           </li>
         ))}
       </ul>
