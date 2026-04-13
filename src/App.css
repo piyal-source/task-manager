@@ -220,3 +220,7 @@
 .text-right {
   text-align: right;
 }
+
+.whitespace-pre-wrap {
+  white-space: pre-wrap;
+}

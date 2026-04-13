@@ -112,7 +112,7 @@ export default function ProjectDetails({
           />
         </p>
       ) : (
-        selectedProject.description && <p>{selectedProject.description}</p>
+        selectedProject.description && <p className="whitespace-pre-wrap">{selectedProject.description}</p>
       )}
       <hr />
       <h2>Tasks</h2>
