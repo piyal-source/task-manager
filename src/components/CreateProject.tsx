@@ -8,6 +8,7 @@ export default function CreateProject({
   onRemoveSelectedProject: () => void;
 }) {
   const [showEmptyError, setShowEmptyError] = useState(false);
+
   const titleRef = useRef<HTMLInputElement>(null);
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
   const dueDateRef = useRef<HTMLInputElement>(null);

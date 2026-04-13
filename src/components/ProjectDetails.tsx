@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import type { ProjectType, TaskType } from "../types/projects.type";
-import Tasks from "./Tasks";
+import Tasks from "./Tasks.tsx";
 
 export default function ProjectDetails({
   selectedProject,
@@ -19,19 +19,6 @@ export default function ProjectDetails({
   const titleRef = useRef<HTMLInputElement>(null);
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
   const dueDateRef = useRef<HTMLInputElement>(null);
-  const taskInputRef = useRef<HTMLInputElement>(null);
-
-  const handleAddTask = () => {
-    if (!taskInputRef.current || taskInputRef.current.value.trim() === "")
-      return;
-    const newTask = {
-      id: crypto.randomUUID(),
-      title: taskInputRef.current.value,
-      completed: false,
-    };
-    onUpdateTasks([...selectedProject.tasks, newTask]);
-    taskInputRef.current.value = "";
-  };
 
   const handleEditProject = () => {
     if (isEditing) {
@@ -112,23 +99,12 @@ export default function ProjectDetails({
           />
         </p>
       ) : (
-        selectedProject.description && <p className="whitespace-pre-wrap">{selectedProject.description}</p>
+        selectedProject.description && (
+          <p className="whitespace-pre-wrap">{selectedProject.description}</p>
+        )
       )}
       <hr />
-      <h2>Tasks</h2>
-      <p>
-        <input type="text" placeholder="Add a new task..." ref={taskInputRef} />
-        <button onClick={handleAddTask}>Add Task</button>
-      </p>
-      {selectedProject.tasks.length === 0 ? (
-        <p>This project does not have any tasks added yet.</p>
-      ) : (
-        <Tasks
-          projectTasks={selectedProject.tasks}
-          projectId={selectedProject.id}
-          onUpdateTasks={onUpdateTasks}
-        />
-      )}
+      <Tasks selectedProject={selectedProject} onUpdateTasks={onUpdateTasks} />
     </>
   );
 }
